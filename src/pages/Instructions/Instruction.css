@@ -1,0 +1,32 @@
+.instruction-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #1d1f20;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.instruction-title {
+  font-size: 3rem;
+  color: #35b870;
+  margin-bottom: 20px;
+}
+
+.instruction-list {
+  list-style-type: none;
+  padding: 0;
+  font-size: 2rem;
+  text-align: left;
+}
+
+.instruction-list li {
+  background-color: #272b2e;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
