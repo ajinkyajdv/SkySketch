@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home/Home';
-import Instruction from '../pages/Instructions/Instruction';
-import Whiteboard from '../pages/Whiteboard/Whiteboard';
-import Image from '../pages/Image/Image';
-import PDF from '../pages/PDF/PDF';
-import Maths from '../pages/Maths/Maths';
+import Home from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Home/Home';
+import Instruction from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Instructions/Instruction';
+import Whiteboard from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Whiteboard/Whiteboard';
+import Image from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Image/Image';
+import PDF from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/PDF/PDF';
+import Maths from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Maths/Maths';
 import './App.css';
 
 function App() {
