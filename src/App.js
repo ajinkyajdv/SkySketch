@@ -6,6 +6,7 @@ import Whiteboard from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pa
 import Image from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Image/Image';
 import PDF from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/PDF/PDF';
 import Maths from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Maths/Maths';
+import Threed from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Threed/Threed';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Image" element={<Image />} />
           <Route path="/PDF" element={<PDF />} />
           <Route path="/Maths" element={<Maths />} />
+          <Route path="/Threed" element={<Threed />} />
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Hands } from '@mediapipe/hands';
 import { Camera } from '@mediapipe/camera_utils';
+import { GoogleGenerativeAI } from '@google/generative-ai'; // Ensure the package is installed
+
+// Hardcoded API key (not recommended for production)
+const genAI = new GoogleGenerativeAI('AIzaSyAZZdK1pVkG3gYvmonOINJRZjD_V4bYvr0');
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const Whiteboard = () => {
   const videoRef = useRef(null);
@@ -10,6 +15,8 @@ const Whiteboard = () => {
   const [drawing, setDrawing] = useState(true);
   const buttonRef = useRef(null);
   const [answer, setAnswer] = useState('');
+  const [error, setError] = useState('');
+  const [textInput, setTextInput] = useState(''); // State for the text input
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -19,10 +26,11 @@ const Whiteboard = () => {
     const ctx = canvasElement.getContext('2d');
     const buttonElement = buttonRef.current;
 
-    canvasElement.width = window.innerWidth * 0.75;
+    // Set canvas dimensions
+    canvasElement.width = window.innerWidth * 0.8; // Adjusted width for right section
     canvasElement.height = window.innerHeight;
-    drawingCanvasElement.width = window.innerWidth * 0.75;
-    drawingCanvasElement.height = window.innerHeight;
+    drawingCanvasElement.width = canvasElement.width;
+    drawingCanvasElement.height = canvasElement.height;
 
     const hands = new Hands({
       locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
@@ -139,38 +147,53 @@ const Whiteboard = () => {
     }
   }, []);
 
-  const handleGeminiAI = () => {
+  const handleGeminiAI = async () => {
     const drawingCanvasElement = drawingCanvasRef.current;
     const imageData = drawingCanvasElement.toDataURL('image/png');
 
-    console.log('Sending image data to Gemini AI:', imageData); // Log image data
+    console.log("Image Data URL:", imageData); // Log the data URL for debugging
 
-    // API call to Gemini AI
-    fetch('https://api.gemini.ai/analyze', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer AIzaSyApws0mJT_dIwM9vEXrRuFfUSdlxhIOt5w`,
-      },
-      body: JSON.stringify({ image: imageData }),
-    })
-      .then((response) => {
-        console.log('Response from Gemini AI:', response); // Log response object
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Data from Gemini AI:', data); // Log parsed data
-        setAnswer(data.answer); // Assuming 'answer' is the field in the API response
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    const prompt = 'Analyze this image of a drawing and describe how the depicted product might be manufactured. Here is the image:';
+    const imagePart = fileToGenerativePart(imageData, 'image/png');
+
+    try {
+      const result = await model.generateContent([prompt, imagePart]);
+      console.log("AI Response:", result); // Log the AI response for debugging
+      setAnswer(result.response.text());
+      setError(''); // Clear any previous errors
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to get an answer from Gemini AI. Please try again.'); // Display error message
+    }
   };
 
+  const handleTextSubmit = async () => {
+    const prompt = `Analyze the following text and provide a detailed explanation: ${textInput}`;
+    try {
+      const result = await model.generateContent([prompt]);
+      console.log("AI Response from text input:", result);
+      setAnswer((prev) => prev + "\n" + result.response.text()); // Append new answer to previous answer
+      setTextInput(''); // Clear the text input after submission
+      setError(''); // Clear any previous errors
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to get an answer from Gemini AI. Please try again.'); // Display error message
+    }
+  };
+
+  function fileToGenerativePart(dataUrl, mimeType) {
+    return {
+      inlineData: {
+        data: dataUrl.split(',')[1], // Get the base64 part of the data URL
+        mimeType,
+      },
+    };
+  }
+
   return (
-    <div className="home-main" style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
       {/* Left Side - Canvas */}
-      <div style={{ flex: 3, position: 'relative' }}>
+      <div style={{ flex: 0.8, position: 'relative' }}>
         <canvas
           ref={canvasRef}
           style={{
@@ -202,32 +225,73 @@ const Whiteboard = () => {
           }}
           autoPlay
         />
-        <button
-          ref={buttonRef}
-          onClick={handleGeminiAI}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: '10px 20px',
-            fontSize: '16px',
-            backgroundColor: '#007BFF',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            zIndex: 10, // Ensure it's on top of other elements
-          }}
-        >
-          Gemini AI
-        </button>
+        <div style={{ position: 'absolute', top: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center' }}>
+          <input
+            type="text"
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+            placeholder="Type your text here..."
+            style={{
+              padding: '10px',
+              marginRight: '10px',
+              borderRadius: '5px',
+              border: '1px solid #ddd',
+              flex: 1,
+            }}
+          />
+          <button
+            onClick={handleTextSubmit}
+            aria-label="Submit text input"
+            style={{
+              padding: '10px 20px',
+              fontSize: '16px',
+              backgroundColor: '#28a745',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s, transform 0.2s',
+            }}
+          >
+            Submit
+          </button>
+          <button
+            ref={buttonRef}
+            onClick={handleGeminiAI}
+            aria-label="Get answer from Gemini AI"
+            style={{
+              padding: '10px 20px',
+              fontSize: '16px',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              marginLeft: '10px',
+              transition: 'background-color 0.3s, transform 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#0056b3'; // Darker blue on hover
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#007BFF'; // Original color
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.boxShadow = '0 0 0 2px rgba(0, 123, 255, 0.5)'; // Outline on focus
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.boxShadow = 'none'; // Remove outline when not focused
+            }}
+          >
+            Gemini AI
+          </button>
+        </div>
       </div>
 
       {/* Right Side - Answer Section */}
       <div
         style={{
-          flex: 1,
+          flex: 0.2,
           padding: '20px',
           backgroundColor: '#f7f7f7',
           borderLeft: '2px solid #ddd',
@@ -235,21 +299,15 @@ const Whiteboard = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           height: '100%',
+          color: 'black',
+          width: '300px', // Fixed width for the answer section
+          maxHeight: '700px', // Set a fixed height
+          overflow: 'auto', // Enable scrolling for overflowing content
         }}
       >
-        <h3>Gemini AI Answer</h3>
-        <div
-          style={{
-            padding: '10px',
-            backgroundColor: 'black',
-            border: '1px solid #ddd',
-            borderRadius: '5px',
-            minHeight: '100px',
-            color: 'white',
-          }}
-        >
-          {answer ? <p>{answer}</p> : <p>No answer yet. Draw a problem and click "Gemini AI" to get an answer.</p>}
-        </div>
+        <h2 style={{ marginBottom: '20px' }}>AI Generated Answer</h2>
+        <p style={{ whiteSpace: 'pre-line' }}>{answer || 'Your answer will appear here.'}</p>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
   );
