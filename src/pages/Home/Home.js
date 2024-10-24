@@ -78,7 +78,7 @@ export default function Home() {
               style={{ height: '150px', width: '150px' }}
             />
             <h2>Upload PPT</h2>
-            <Link to='/PPT'>
+            <Link to='/ppt'>
               <button className="btn start-btn">Upload</button>
             </Link>
           </div>

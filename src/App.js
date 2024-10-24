@@ -7,6 +7,7 @@ import Image from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/I
 import PDF from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/PDF/PDF';
 import Maths from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Maths/Maths';
 import Threed from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/Threed/Threed';
+import PPT from 'C:/Users/ajayj/OneDrive/Desktop/SkySketch/project/src/pages/PPT/PPT';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/PDF" element={<PDF />} />
           <Route path="/Maths" element={<Maths />} />
           <Route path="/Threed" element={<Threed />} />
+          <Route path="/PPT" element={<PPT />} />
         </Routes>
       </div>
     </Router>

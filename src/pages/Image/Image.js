@@ -181,7 +181,7 @@ const DocumentDrawing = () => {
           left: 0,
           width: '100vw',
           height: '100vh',
-          cursor: 'crosshair',
+          //cursor: 'crosshair',
           backgroundColor: 'transparent',
           zIndex: 2,
         }}
