@@ -1,0 +1,125 @@
+/* General Styles */
+.app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Home Container Styles */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0px;
+}
+
+/* Header Styles */
+.home-header {
+  width: 100%;
+  background-color: #272b2e;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.home-heading {
+  font-size: 3rem; /* Reduced font size */
+  color: #017373;
+}
+
+/* Description Styles */
+.description {
+  font-size: 3rem; /* Increased font size */
+  margin-bottom: 20px;
+}
+
+/* Main Container Styles */
+.home-main {
+  display: flex;
+  flex-direction: column; /* Changed to column */
+  align-items: center; /* Centered content */
+  width: 100%;
+}
+
+.btn-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* Column Styles */
+.column {
+  background-color: #272b2e;
+  border-radius: 30px;
+  padding: 50px;
+  width: 25%; /* Adjust width */
+  height: 300px; /* Set fixed height for square-like appearance */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #017373;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ff9800;
+}
+
+/* Specific Button Styles */
+.btn-secondary {
+  background-color: #017373;
+  font-size: 2rem; /* Matched font size with SkySketch */
+  padding: 10px 20px; /* Adjusted padding */
+}
+
+.btn-secondary:hover {
+  background-color: #ff9800;
+}
+
+#about-btn {
+  margin-top: 0;
+}
+
+/* Centered Column Styles */
+.centered-column {
+  background-color: #272b2e;
+  border-radius: 30px;
+  padding: 50px;
+  width: 25%; /* Adjust width */
+  height: 300px; /* Set fixed height for square-like appearance */
+  margin: 20px auto; /* Centered horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

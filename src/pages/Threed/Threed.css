@@ -1,0 +1,51 @@
+.three-d-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.upload-btn {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upload-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .canvas-container {
+    height: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .canvas-container {
+    height: 70%;
+  }
+}
