@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# SkySketch - An Interactive Fingertip Teaching
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://github.com/user-attachments/assets/3881f33a-2bb6-455a-b4d3-3d283e8ea7b8)
+![image](https://github.com/user-attachments/assets/c7fc6f84-968c-4fce-9966-fbdea9ac0f47)
+![image](https://github.com/user-attachments/assets/d7f26c1b-7a48-462b-8858-932ac8114ff9)
 
-## Available Scripts
+**SkySketch** is a dynamic and interactive whiteboard platform designed to enhance learning and collaboration through innovative fingertip gesture controls and AI-powered functionalities. This project focuses on delivering a seamless experience for users to annotate, manipulate, and interact with various types of content including PDFs, PowerPoint presentations, images, and 3D models. 
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Whiteboard Interaction**: A responsive canvas that supports drawing and annotations using gestures, enabling intuitive engagement for users.
+  
+- **PPT & PDF Annotation**: Users can upload and annotate PDFs and PowerPoint presentations, making it an ideal tool for educational purposes, meetings, and presentations.
+  
+- **3D Model Handling**: Upload and manipulate 3D models directly within the platform, facilitating hands-on learning and exploration of complex concepts.
+  
+- **GenAI Integration**: Harnessing the power of Generative AI (GenAI) to provide context-driven support, solve math problems through drawings, and offer suggestions and enhancements based on user input.
+  
+- **Gesture-Based Interaction**: Hand-tracking technology enables gesture-based controls to navigate and interact with documents, images, and whiteboard elements, making the learning process more natural and engaging.
+  
+- **Cloud Storage Integration**: Using Firebase for storing user-specific data, such as annotations and uploads, ensuring personalized and persistent interactions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React.js**: Frontend framework for building an interactive and responsive user interface.
+- **Firebase**: Backend service for user authentication and storage.
+- **GenAI Integration**: For AI-driven suggestions and math problem-solving.
+- **Mediapipe Hands API**: For gesture and hand-tracking functionality.
+- **Google Drive API**: For uploading and displaying PDFs and PowerPoint presentations.
+- **Three.js**: For rendering and interacting with 3D models.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone this repository:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/yourusername/skySketch.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate into the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   cd skySketch
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the required dependencies:
 
-### `npm run eject`
+   ```bash
+   npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the application:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Landing Page**: Upon opening, you are directed to the landing page where you can log in or register to access your personalized features.
+2. **Interactive Whiteboard**: Use the whiteboard for free drawing, annotating presentations, and solving math problems.
+3. **PPT/PDF Interaction**: Upload your presentation or PDF to begin interacting with it.
+4. **3D Model Interaction**: Upload and manipulate 3D models directly on the canvas using intuitive controls.
 
-## Learn More
+## Contribution
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to fork, clone, or contribute to the project by creating pull requests. All contributions are welcome!
